@@ -32,8 +32,6 @@ class MemoryDetailViewController: UIViewController, UIImagePickerControllerDeleg
     
     @IBAction func addPhoto(_ sender: Any) {
         let authorizationStatus = PHPhotoLibrary.authorizationStatus()
-        let alert = UIAlertController(title: "Permission Required", message: "Memories requires access to your PHoto Library to work properly. Please enable access in Settings.", preferredStyle: .alert)
-        
         if authorizationStatus == .authorized {
             presentImagePickerController()
         } else if authorizationStatus == .notDetermined {
@@ -44,10 +42,16 @@ class MemoryDetailViewController: UIViewController, UIImagePickerControllerDeleg
                 }
             }
         } else if authorizationStatus == .denied {
-            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-                NSLog("The \"OK\" alert occured.")
+            let alert = UIAlertController(title: "Permission Required", message: "Memories requires access to your Photo Library to work properly. Please enable access in Settings.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Memories requires access to your Photo Library to work properly. Please enable access in Settings."), style: .default, handler: { _ in
+                NSLog("The \"Change permissions in Settings\" alert occured.")
             }))
             self.present(alert, animated: true, completion: nil)
+        } else if authorizationStatus == .restricted {
+            let alert = UIAlertController(title: "Permission Required", message: "Memories requires access to your Photo Library to work properly. Please ask a parent to enable access in Settings.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Memories requires access to your Photo Library to work properly. Please ask a parent to enable access in Settings."), style: .default, handler: { _ in
+                NSLog("The \"Change permissions in Settings\" alert occured.")
+            }))
         }
     }
     
@@ -62,6 +66,7 @@ class MemoryDetailViewController: UIViewController, UIImagePickerControllerDeleg
             guard let memory = memory else { return }
             memoryController?.updateMemory(memory: memory, withTitle: title, bodyText: bodyText, imageData: imageData)
         }
+        self.navigationController?.popViewController(animated: true)
     }
     
     // MARK: - ImagePickerController functions
