@@ -17,6 +17,7 @@
 		F88180B921124855001C404F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88180B821124855001C404F /* OnboardingViewController.swift */; };
 		F88180BB211249CD001C404F /* MemoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88180BA211249CD001C404F /* MemoriesTableViewController.swift */; };
 		F88180BD21124B85001C404F /* MemoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88180BC21124B85001C404F /* MemoryDetailViewController.swift */; };
+		F88180BF21124EA2001C404F /* LocalNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88180BE21124EA2001C404F /* LocalNotificationHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		F88180B821124855001C404F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		F88180BA211249CD001C404F /* MemoriesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoriesTableViewController.swift; sourceTree = "<group>"; };
 		F88180BC21124B85001C404F /* MemoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryDetailViewController.swift; sourceTree = "<group>"; };
+		F88180BE21124EA2001C404F /* LocalNotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,8 +50,6 @@
 		F881809521123FC9001C404F = {
 			isa = PBXGroup;
 			children = (
-				F88180B321124015001C404F /* Memory.swift */,
-				F88180B5211240F3001C404F /* MemoryController.swift */,
 				F88180A021123FCA001C404F /* Memories */,
 				F881809F21123FCA001C404F /* Products */,
 			);
@@ -66,13 +66,16 @@
 		F88180A021123FCA001C404F /* Memories */ = {
 			isa = PBXGroup;
 			children = (
+				F88180B321124015001C404F /* Memory.swift */,
+				F88180B5211240F3001C404F /* MemoryController.swift */,
+				F88180BE21124EA2001C404F /* LocalNotificationHelper.swift */,
 				F88180A121123FCA001C404F /* AppDelegate.swift */,
 				F88180A321123FCA001C404F /* ViewController.swift */,
 				F88180A521123FCA001C404F /* Main.storyboard */,
 				F88180A821123FCB001C404F /* Assets.xcassets */,
 				F88180AA21123FCB001C404F /* LaunchScreen.storyboard */,
-				F88180B721124830001C404F /* ViewControllers */,
 				F88180AD21123FCB001C404F /* Info.plist */,
+				F88180B721124830001C404F /* ViewControllers */,
 			);
 			path = Memories;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			files = (
 				F88180BB211249CD001C404F /* MemoriesTableViewController.swift in Sources */,
 				F88180B421124015001C404F /* Memory.swift in Sources */,
+				F88180BF21124EA2001C404F /* LocalNotificationHelper.swift in Sources */,
 				F88180BD21124B85001C404F /* MemoryDetailViewController.swift in Sources */,
 				F88180A421123FCA001C404F /* ViewController.swift in Sources */,
 				F88180B921124855001C404F /* OnboardingViewController.swift in Sources */,
