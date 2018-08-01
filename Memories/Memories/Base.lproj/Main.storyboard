@@ -56,11 +56,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <segue destination="9Lf-26-SPM" kind="presentation" id="vZn-6G-rbf"/>
+                        <segue destination="9Lf-26-SPM" kind="presentation" identifier="OnboardingSegue" id="vZn-6G-rbf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2" y="32"/>
         </scene>
         <!--Memories Table View Controller-->
         <scene sceneID="p0n-o5-wO5">
