@@ -47,7 +47,7 @@ class LocalNotificationHelper {
         let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
         
         // sets up a notification (aka a "request") to receive the above arguments
-        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        _ = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         
     }
 }

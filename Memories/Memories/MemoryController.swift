@@ -10,6 +10,10 @@ import Foundation
 
 class MemoryController {
     
+    init() {
+        loadFromPersistentStore()
+    }
+    
     // Create ... with saveToPersistentStore()
     func createMemory(withTitle title: String, bodyText: String, imageData: Data) {
         let memory = Memory(title: title, bodyText: bodyText, imageData: imageData)

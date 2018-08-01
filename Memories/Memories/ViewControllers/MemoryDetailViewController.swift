@@ -7,28 +7,75 @@
 //
 
 import UIKit
+import Photos
 
-class MemoryDetailViewController: UIViewController {
+class MemoryDetailViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    override func viewWillAppear(_ animated: Bool) {
+        updateViews()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    // MARK: - View functions
+    func updateViews() {
+        if let memory = memory {
+            self.titleTextField.text = "Edit Memory"
+            photoImageView.image = UIImage(data: memory.imageData)
+            titleTextField.text = memory.title
+            bodyTextView.text = memory.bodyText
+        } else {
+            self.titleTextField.text = "Add Memory"
+        }
     }
+    
     
     // MARK: - Button functions
     
     @IBAction func addPhoto(_ sender: Any) {
+        let authorizationStatus = PHPhotoLibrary.authorizationStatus()
+        if authorizationStatus == .authorized {
+            presentImagePickerController()
+        } else if authorizationStatus == .notDetermined {
+            PHPhotoLibrary.requestAuthorization { (status) in
+                guard status == .authorized else { return }
+                if status == .authorized {
+                    self.presentImagePickerController()
+                }
+            }
+            
+        }
     }
     
     @IBAction func saveMemory(_ sender: Any) {
+        guard let image = photoImageView.image,
+            let imageData = UIImagePNGRepresentation(image),
+            let title = titleTextField.text,
+            let bodyText = bodyTextView.text else { return }
+        if memory == nil {
+            memoryController?.createMemory(withTitle: title, bodyText: bodyText, imageData: imageData)
+        } else {
+            guard let memory = memory else { return }
+            memoryController?.updateMemory(memory: memory, withTitle: title, bodyText: bodyText, imageData: imageData)
+        }
     }
     
+    // MARK: - ImagePickerController functions
+    
+    func presentImagePickerController() {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.delegate = self
+            present(imagePicker, animated: true, completion: nil)
+        } else {
+            return
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        photoImageView.image = image
+    }
     
     /*
     // MARK: - Navigation

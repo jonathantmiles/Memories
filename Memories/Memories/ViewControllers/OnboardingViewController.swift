@@ -14,7 +14,9 @@ class OnboardingViewController: UIViewController {
         super.viewDidLoad()
 
         localNotificationHelper.getAuthorizationStatus() { (granted) in
+            if granted == .authorized {
             self.performSegue(withIdentifier: "OnboardingSegue", sender: nil)
+            }
         }
         // Do any additional setup after loading the view.
     }

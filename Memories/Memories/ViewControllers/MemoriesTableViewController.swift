@@ -42,6 +42,7 @@ class MemoriesTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destVC = segue.destination as? MemoryDetailViewController else { return }
         destVC.memoryController = memoryController
+        
         if segue.identifier == "CreateMemoryDetail" {
             
         } else if segue.identifier == "ShowMemoryDetail"{
